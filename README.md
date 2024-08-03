@@ -1,72 +1,79 @@
-<h1 align="center"><img width="400px" src="docs/img/mandacarubroker-logo.webp"></h1>
+<h1 align="center"><img width="800px" src="docs/img/logo-full.svg"></h1>
 
-<p align="center">
-  <strong>Projeto vencedor do <a href="https://mandacaru.dev">Mandacaru.dev</a> no Módulo Jandaia</strong>
-</p>
+## Objetivos do Projeto:
 
-O projeto Mandacaru Broker API é uma aplicação Spring Boot que visa simular o comportamento de um Home Broker de Ações.
+O objetivo do projeto é desenvolver uma plataforma de perguntas e respostas utilizando MySQL como banco de dados e frameworks back-end e front-end, além de outras tecnologias.
 
 ## Arquitetura da Solução
 
 ![Arquitetura da solução](./docs/img/architecture.png)
 
-## Fluxo de Trabalho
+## Pré-requisitos
 
-Para ambiente de desenvolvimento, foi utilizado um ambiente local com dois bancos instanciados por meio do `docker-compose.yml`.
+Antes de começar, certifique-se de ter os seguintes componentes instalados em sua máquina:
 
-Ao realizar a abertura de um pull request, o GitHub Actions é usado para rodar uma pipeline composta por build da aplicação, SonarCloud Quality Gate, checagem de padrão de linting com CheckStyle e execução de testes unitários e de integração.
-
-
-<p align="center">
-  <img src="docs/img/ci.gif" width="700px" />
-</p>
-
-Passado nas checagens do pull request e feitas as revisões pelos membros da equipe, pode ser feito o merge do pull request. Novamente, é executado uma assessment de qualidade com o SonarCloud e é feita a implantação da aplicação utilizando ferramentas em nuvem (**AZURE**) e um workflow de deploy.
-
-Nesse sentido, o workflow de deploy faz o build da imagem docker e push para o Docker Hub. Com isso, o GitHub Actions acessa a máquina virtual na Azure e dois containers são implantados.
-
-<p align="center">
-  <img src="docs/img/cd.png" width="700px" />
-</p>
-
-O primeiro container é referente ao nosso ambiente de **produção**, que foi utilizado para desmonstração no DEMO DAY (09/03/2024): com  [nossa documentação Swagger - ambiente de produção](https://api.mandacarubroker.com.br/docs).
-
-Já o outro container foi do nosso ambiente de **testes**, utilizado para a avaliação do projeto. Esse ambiente foi utilizado como uma alternativa de rodar localmente a aplicação ou usar o ambiente de produção: [nossa documentação swagger - ambiente de teste](https://test-api.mandacarubroker.com.br/swagger-ui/index.html).
-
-## Uso
-
-1. Clone o repositório: `git clone https://github.com/izaiasmachado/mandacarubroker.git`
-2. Siga o tutorial para [criar seu arquivo `.env` e subir um banco PostgreSQL](./docs/tutorials/setup-postgresql-docker-compose.md)
-3. Importe o projeto em sua IDE preferida **(caso use o IntelliJ):** [realize o tutorial para setar variáveis de ambiente](./docs/tutorials/setup-dotenv-variables-intellij.md) e também [configure o CheckStyle](./docs/tutorials/setup-checkstyle-plugin-intellij.md)
-4. Execute o aplicativo Spring Boot
-5. Acesse a documentação de nossa API em `http://localhost:8080/docs`
-
-## Requisitos
-
-- Java 17 ou superior
-- Maven
-- Docker (Opcional para subir o banco de dados)
+- **Node.js** (versão 20.9.0): [Download Node.js](https://nodejs.org/)
+- **MySQL**: [Download MySQL](https://dev.mysql.com/downloads/)
+- **Docker** (Opcional): [Download Docker](https://www.docker.com/get-started)
 
 ## Tecnologias Utilizadas
 
-- Spring Boot
-- JUnit5
-- PostgreSQL
-- Bcrypt
-- Json Web Token
-- Swagger OpenAPI
+- BCrypt
+- JSONWebToken
+- Prisma.js
+- EJS
+- Bootstrap 5.3
+- Express.js
 
-## Contribuições
+  
+## Como executar o projeto localmente
 
-Contribuições são bem-vindas!
+1. Clone o projeto na sua máquina local:
 
-## Equipe
+`````bash
+git clone https://github.com/izaiasmachado/guia-de-perguntas.git
+`````
 
-| <img src="https://avatars.githubusercontent.com/u/69826078?v=3&s=115"><br><strong>Íris Costa</strong> | <img src="https://avatars0.githubusercontent.com/u/47287096?v=3&s=115"><br><strong>Izaias Machado</strong> | <img src="https://avatars0.githubusercontent.com/u/43821439?v=3&s=115"><br><strong>Jonas Fortes</strong> | <img src="https://avatars0.githubusercontent.com/u/70725719?v=3&s=115"><br><strong>William Lima</strong> | <img src="https://avatars0.githubusercontent.com/u/112739407?v=3&s=115"><br><strong>Yann Lucca</strong> |
+<h1 align="center"><img width="500px" src="docs/img/image_install1.png"></h1>
+
+2. Modifique o nome do arquivo `.env.example` para `.env`
+3. Execute o seguinte comando para criar o container docker contendo o MySQL
+
+````bash
+docker compose up -d
+````
+
+<h1 align="center"><img width="600px" src="docs/img/image_install2.png"></h1>
+
+4. Execute o seguinte comando para instalar as dependências do projeto
+
+````bash
+npm install
+````
+
+<h1 align="center"><img width="800px" src="docs/img/image_install3.png"></h1>
+
+5. Execute o seguinte comando para executar as migrations e criar o banco de dados
+
+````bash
+npx prisma db push
+````
+
+<h1 align="center"><img width="600px" src="docs/img/image_install4.png"></h1>
+
+6. Execute o seguinte comando para rodar a aplicação localmente
+
+````bash
+npm run dev
+````
+
+<h1 align="center"><img width="600px" src="docs/img/image_install5.png"></h1>
+
+7. O site abrirá altomaticamente após isso
+
+<h1 align="center"><img width="800px" src="docs/img/image_install6.png"></h1>
+
+| <img src="https://avatars.githubusercontent.com/u/108894922?s=400&u=fac2d2fe359a5c2c09d77bcdab67f561c2c8cc1d&v=4" width = "120px"><br><strong>Gabriel Vasconcelos</strong> | <img src="https://avatars0.githubusercontent.com/u/47287096?v=3&s=115" width = "120px" ><br><strong>Izaias Machado</strong> | <img src="https://avatars.githubusercontent.com/u/66041553?v=4" width = "120px" ><br><strong>Marcos Vinícius</strong> | <img src="https://avatars0.githubusercontent.com/u/70725719?v=3&s=115" width = "120px"><br><strong>William Lima</strong> | <img src="https://avatars0.githubusercontent.com/u/112739407?v=3&s=115" width = "120px"><br><strong>Yann Lucca</strong> |
 | :---------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: |
-|                          [LinkedIn](https://www.linkedin.com/in/costairis/)                           |                           [LinkedIn](https://www.linkedin.com/in/izaiasmachado/)                           |                     [LinkedIn](https://www.linkedin.com/in/jonas-fortes-2138731a3/)                      |                       [LinkedIn](https://www.linkedin.com/in/william-bruno-sales/)                       |                            [LinkedIn](https://linkedin.com/in/yann-miranda)                             |
-|                                [GitHub](https://github.com/iriscoxta)                                 |                                 [GitHub](https://github.com/izaiasmachado)                                 |                                [GitHub](https://github.com/JonasFortes12)                                |                                [GitHub](https://github.com/williambrunos)                                |                                  [GitHub](https://github.com/yannluk4)                                  |
-
-## Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
+|                          [LinkedIn](https://www.linkedin.com/in/gabrielvasconcelossantos/)                           |                           [LinkedIn](https://www.linkedin.com/in/izaiasmachado/)                           |                     [LinkedIn](https://www.linkedin.com/in/marcosvinciusandradedesousa/)                      |                       [LinkedIn](https://www.linkedin.com/in/william-bruno-sales/)                       |                            [LinkedIn](https://linkedin.com/in/yann-miranda)                             |
+|                                [GitHub](https://github.com/GabVS4)                                 |                                 [GitHub](https://github.com/izaiasmachado)                                 |                                [GitHub](https://github.com/MarcosVini9999)                                |                                [GitHub](https://github.com/williambrunos)                                |                                  [GitHub](https://github.com/yannluk4)                                  |
